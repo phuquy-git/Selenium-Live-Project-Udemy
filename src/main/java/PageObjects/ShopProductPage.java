@@ -1,10 +1,14 @@
 package PageObjects;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ShopProductPage {
+import base.BasePage;
+
+public class ShopProductPage extends BasePage{
 
 	public WebDriver driver;
 	
@@ -14,27 +18,32 @@ public class ShopProductPage {
 	By addToCartBtn = By.cssSelector("[data-button-action]");
 	By homePage = By.cssSelector("ol > li:nth-of-type(1) > a > span");
 	
-	public ShopProductPage(WebDriver driver) {
-		this.driver = driver;
+	public ShopProductPage() throws IOException {
+		super();
 	}
 
-	public WebElement getSizeOption() {
+	public WebElement getSizeOption() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(sizeOption);
 	}
 
-	public WebElement getQuantityIncrease() {
+	public WebElement getQuantityIncrease() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(quantityIncrease);
 	}
 
-	public WebElement getQuantityDecrease() {
+	public WebElement getQuantityDecrease() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(quantityDecrease);
 	}
 
-	public WebElement getAddToCartBtn() {
+	public WebElement getAddToCartBtn() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(addToCartBtn);
 	}
 
-	public WebElement getHomePage() {
+	public WebElement getHomePage() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(homePage);
 	}
 	

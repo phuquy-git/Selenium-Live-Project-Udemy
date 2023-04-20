@@ -1,10 +1,14 @@
 package PageObjects;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderFormPayment {
+import base.BasePage;
+
+public class OrderFormPayment extends BasePage{
 
 	public WebDriver driver;
 
@@ -13,23 +17,27 @@ public class OrderFormPayment {
 	By termsAndConditions = By.cssSelector("#checkout-payment-step [method] .ps-shown-by-js");
 	By orderBtn = By.cssSelector(".btn-primary.center-block");
 	
-	public OrderFormPayment(WebDriver driver) {
-		this.driver = driver;
+	public OrderFormPayment() throws IOException {
+		super();
 	}
 
-	public WebElement getPayByCheck() {
+	public WebElement getPayByCheck() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(payByCheck);
 	}
 
-	public WebElement getPayByWire() {
+	public WebElement getPayByWire() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(payByWire);
 	}
 
-	public WebElement getTermsAndConditions() {
+	public WebElement getTermsAndConditions() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(termsAndConditions);
 	}
 
-	public WebElement getOrderBtn() {
+	public WebElement getOrderBtn() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(orderBtn);
 	}
 	

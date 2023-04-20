@@ -1,10 +1,14 @@
 package PageObjects;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderFormPersInfo {
+import base.BasePage;
+
+public class OrderFormPersInfo extends BasePage{
 
 	public WebDriver driver;
 	
@@ -20,51 +24,62 @@ public class OrderFormPersInfo {
 	By agreeTerm = By.cssSelector("[name='psgdpr']");
 	By continueBtn = By.cssSelector("form#customer-form  button[name='continue']");
 	
-	public OrderFormPersInfo(WebDriver driver) {
-		this.driver = driver;
+	public OrderFormPersInfo() throws IOException {
+		super();
 	}
 
-	public WebElement getMrTitle() {
+	public WebElement getMrTitle() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(mrTitle);
 	}
 
-	public WebElement getMrsTitle() {
+	public WebElement getMrsTitle() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(mrsTitle);
 	}
 
-	public WebElement getFirstName() {
+	public WebElement getFirstName() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(firstName);
 	}
 
-	public WebElement getLastName() {
+	public WebElement getLastName() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(lastName);
 	}
 
-	public WebElement getEmail() {
+	public WebElement getEmail() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(email);
 	}
 
-	public WebElement getPassword() {
+	public WebElement getPassword() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(password);
 	}
 
-	public WebElement getBirthday() {
+	public WebElement getBirthday() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(birthday);
 	}
 
-	public WebElement getReceiveOffer() {
+	public WebElement getReceiveOffer() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(receiveOffer);
 	}
 
-	public WebElement getSignUp() {
+	public WebElement getSignUp() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(signUp);
 	}
 
-	public WebElement getAgreeTerm() {
+	public WebElement getAgreeTerm() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(agreeTerm);
 	}
 
-	public WebElement getContinueBtn() {
+	public WebElement getContinueBtn() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(continueBtn);
 	}
 	

@@ -1,10 +1,14 @@
 package PageObjects;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderFormDelivery {
+import base.BasePage;
+
+public class OrderFormDelivery extends BasePage{
 
 public WebDriver driver;
 	
@@ -21,55 +25,67 @@ public WebDriver driver;
 	By use = By.cssSelector("input#use_same_address");
 	By continueBtn = By.cssSelector("[name='confirm-addresses']");
 	
-	public OrderFormDelivery(WebDriver driver) {
-		this.driver = driver;
+	public OrderFormDelivery() throws IOException {
+		super();
 	}
 
-	public WebElement getFirstName() {
+	public WebElement getFirstName() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(firstName);
 	}
 
-	public WebElement getLastName() {
+	public WebElement getLastName() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(lastName);
 	}
 
-	public WebElement getCompany() {
+	public WebElement getCompany() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(company);
 	}
 
-	public WebElement getAddress() {
+	public WebElement getAddress() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(address);
 	}
 
-	public WebElement getAddressComplement() {
+	public WebElement getAddressComplement() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(addressComplement);
 	}
 
-	public WebElement getCity() {
+	public WebElement getCity() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(city);
 	}
 
-	public WebElement getState() {
+	public WebElement getState() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(state);
 	}
 
-	public WebElement getZip() {
+	public WebElement getZip() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(zip);
 	}
 
-	public WebElement getCountry() {
+	public WebElement getCountry() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(country);
 	}
 
-	public WebElement getPhone() {
+	public WebElement getPhone() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(phone);
 	}
 
-	public WebElement getUse() {
+	public WebElement getUse() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(use);
 	}
 
-	public WebElement getContinueBtn() {
+	public WebElement getContinueBtn() throws IOException {
+		this.driver = getDriver();
 		return driver.findElement(continueBtn);
 	}
 	

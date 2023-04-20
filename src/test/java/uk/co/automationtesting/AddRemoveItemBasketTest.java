@@ -2,14 +2,9 @@ package uk.co.automationtesting;
 
 import org.testng.annotations.Test;
 import java.io.IOException;
-import java.time.Duration;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 
 import PageObjects.HomePage;
@@ -17,65 +12,69 @@ import PageObjects.ShopContentPanel;
 import PageObjects.ShopHomepage;
 import PageObjects.ShopProductPage;
 import PageObjects.ShoppingCart;
-import base.BasePage;
+import base.ExtentManager;
+import base.Hooks;
 
 @Listeners(resources.Listeners.class)
 
-public class AddRemoveItemBasketTest extends BasePage{
+public class AddRemoveItemBasketTest extends Hooks{
 
 	public AddRemoveItemBasketTest() throws IOException {
 		super();
 	}
 	
-	@BeforeTest
-	public void setup() throws IOException {
-		
-		driver = getDriver();
-		driver.get(getUrl());
-	}
-	
-	@AfterTest
-	public void tearDown() {
-		
-		driver.close();
-		driver = null;
-	}
-	
 	@Test
 	public void addRemoveItem() throws IOException, InterruptedException {
 		
-		HomePage home = new HomePage(driver);
+		ExtentManager.log("Starting AddRemoveItemBasketTest...");
+		
+		HomePage home = new HomePage();
 		home.getCookie().click();
+		ExtentManager.pass("Reached the shop homepage");
 		home.getTestStoreLink().click();
 		
-		ShopHomepage shopHome = new ShopHomepage(driver);
+		ShopHomepage shopHome = new ShopHomepage();
 		shopHome.getProductOne().click();
 		
-		ShopProductPage shopProduct = new ShopProductPage(driver);
+		ShopProductPage shopProduct = new ShopProductPage();
 		
 		Select sizes = new Select(shopProduct.getSizeOption());
 		sizes.selectByVisibleText("M");
+		ExtentManager.pass("Have successfully selected product size");
 		
 		shopProduct.getQuantityIncrease().click();
+		ExtentManager.pass("Have successfully increased quantity");
 		shopProduct.getAddToCartBtn().click();
+		ExtentManager.pass("Have successfully added product to basket");
 		Thread.sleep(5000);
-		ShopContentPanel shopContent = new ShopContentPanel(driver);
+		
+		ShopContentPanel shopContent = new ShopContentPanel();
 		shopContent.getContinueShoppingBtn().click();
 		shopProduct.getHomePage().click();
 		shopHome.getProductTwo().click();
 		shopProduct.getAddToCartBtn().click();
 		shopContent.getProceedToCheckoutBtn().click();
 		
-		ShoppingCart cart = new ShoppingCart(driver);
+		ShoppingCart cart = new ShoppingCart();
 		cart.getDeleteTwo().click();
 
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.invisibilityOf(cart.getDeleteTwo()));
+		waitForElementInvisible(cart.getDeleteTwo(), 10);
 		
 		System.out.println(cart.getTotalValue().getText());
 		
-		Assert.assertEquals(cart.getTotalValue().getText(), "$45.23");
+		try {
+			// using an assertion to make sure the total amount is what we are expecting
+			Assert.assertEquals(cart.getTotalValue().getText(), "$45.23");
+			ExtentManager.pass("The total amount matches the expected amount");
+		} catch(AssertionError e) {
+			Assert.fail("Cart amount did not match the expected amount, it found " + cart.getTotalValue().getText() 
+					+ " expected $45.23");
+			ExtentManager.fail("The total amount did not match the expected amount. ");
+		}
+		
+		
+		
 	}
 
 	
